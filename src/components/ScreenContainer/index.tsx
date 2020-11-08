@@ -22,6 +22,7 @@ type ScreenContainerProps = {
     scroll?: boolean
     keyboardAvoiding?: boolean
     containerStyle?: {[key: string]: any}
+    popup?: boolean
 
     headerShown?: boolean
     title?: string
@@ -35,16 +36,21 @@ type ScreenContainerProps = {
 const ScreenContainer = ({
     keyboardAvoiding,
     containerStyle,
+    popup,
 
     headerShown,
     title,
     headerFloat,
     headerLeft,
     headerRight,
+    contentAlignCenter,
+    contentPaddingHorizontal,
     ...props
 }: ScreenContainerProps) => {
     return (
-        <Container style={containerStyle}>
+        <Container
+            style={containerStyle}
+            transparent={popup}>
             {headerShown &&
                 <Header
                     left={
@@ -63,12 +69,16 @@ const ScreenContainer = ({
                 <KeyboardAvoidingView>
                     <Content
                         {...props}
+                        alignCenter={contentAlignCenter}
+                        paddingHorizontal={contentPaddingHorizontal}
                         />
                 </KeyboardAvoidingView>
             }
             {!keyboardAvoiding &&
                 <Content
                     {...props}
+                        alignCenter={contentAlignCenter}
+                        paddingHorizontal={contentPaddingHorizontal}
                     />
             }
         </Container>

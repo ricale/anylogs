@@ -1,8 +1,15 @@
 import styled, { tval } from 'themes';
 
-const Container = styled.View`
+type ContainerProps = {
+  transparent?: boolean
+}
+const Container = styled.View<ContainerProps>`
   flex: 1;
-  background-color: ${tval('colorBackground')};
+  background-color: ${p => (
+    p.transparent ?
+      'rgba(0,0,0,0.6)' :
+      tval('colorBackground')
+  )};
 `;
 
 export default Container;

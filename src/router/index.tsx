@@ -3,6 +3,7 @@ import {
     NavigationContainer
 } from '@react-navigation/native';
 import {
+    CardStyleInterpolators,
     createStackNavigator
 } from '@react-navigation/stack';
 
@@ -22,10 +23,18 @@ const AppRouter = () => {
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
+                    cardStyle: { backgroundColor: 'transparent' },
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 }}>
                 <Stack.Screen name='WritingsList' component={WritingsListScreen} />
-                <Stack.Screen name='WritingsNew' component={WritingsNewScreen} />
+                <Stack.Screen
+                    name='WritingsNew'
+                    component={WritingsNewScreen}
+                    options={{
+                        cardStyleInterpolator: CardStyleInterpolators.forNoAnimation,
+                    }}
+                    />
 
             </Stack.Navigator>
         </NavigationContainer>

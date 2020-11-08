@@ -11,6 +11,7 @@ export interface NormalTheme extends DefaultTheme {
     spacing: number
     headerHeight: number
     buttonHeight: number
+    inputHeight: number
   }
   text: {
     h1: { [key: string]: any }
@@ -33,7 +34,13 @@ const normalTheme: NormalTheme = {
     colorBackground: '#333333',
     colorOnBackground: '#FFFFFF',
 
+    colorSurface: '#333333',
+    colorOnSurface: '#FFFFFF',
+
     colorDisabled: '#AAA',
+
+    colorInputSurface: '#DDDDDD',
+    colorOnInputSurface: '#121212',
   },
   dimens: {
     bigMargin: base * 2,
@@ -43,6 +50,7 @@ const normalTheme: NormalTheme = {
 
     headerHeight: base * 3,
     buttonHeight: base * 3,
+    inputHeight: base * 3,
   },
 
   text: {

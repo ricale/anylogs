@@ -1,5 +1,5 @@
-import writingActions from './writings/actions';
+import writingsActions from './writings/actions';
 
 export {
-    writingActions,
+    writingsActions,
 }
