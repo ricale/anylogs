@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import writingsReducer from './writings/reducer';
+import writings from './writings/reducer';
 
 const rootReducer = combineReducers({
-    writings: writingsReducer,
+    writings,
 });
 
 export default rootReducer;

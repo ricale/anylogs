@@ -1,21 +1,14 @@
-import {
-    createStore,
-    applyMiddleware,
-    compose,
-} from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import {
-    RootState,
-} from './types';
-
+import { RootState } from './types';
 import rootSaga from './saga';
 import rootReducer from './reducer';
 
 export * from './actions';
 export * from './types';
 
-function getStore(
+export default function getStore(
     preloadedState: Partial<RootState> = {},
     middlewares: any[] = []
 ) {
@@ -42,5 +35,3 @@ function getStore(
 
     return store;
 }
-
-export default getStore;

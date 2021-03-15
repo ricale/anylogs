@@ -11,7 +11,7 @@ const {
     ThemeProvider,
 } = styledComponents as ReactNativeThemedStyledComponentsModule<NormalTheme>;
 
-export function useTheme() {
+function useTheme() {
     return useContext(ThemeContext)
 }
 
@@ -19,8 +19,8 @@ export {
     css,
     ThemeProvider,
     normal,
-    getValue,
     getValue as tval,
+    useTheme,
 };
 
 export default styled;

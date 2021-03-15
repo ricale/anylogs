@@ -7,10 +7,7 @@ import {
     createStackNavigator
 } from '@react-navigation/stack';
 
-import {
-    WritingsListScreen,
-    WritingsNewScreen,
-} from 'screens';
+import * as pages from 'screens';
 
 export type RootStackParamList = {
     WritingsList: undefined
@@ -27,10 +24,10 @@ const AppRouter = () => {
                     cardStyle: { backgroundColor: 'transparent' },
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 }}>
-                <Stack.Screen name='WritingsList' component={WritingsListScreen} />
+                <Stack.Screen name='WritingsList' component={pages.WritingsListScreen} />
                 <Stack.Screen
                     name='WritingsNew'
-                    component={WritingsNewScreen}
+                    component={pages.WritingsNewScreen}
                     options={{
                         cardStyleInterpolator: CardStyleInterpolators.forNoAnimation,
                     }}

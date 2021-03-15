@@ -13,7 +13,6 @@ export default function writingsReducer(
     action: WritingsAction,
 ): WritingsState {
     switch (action.type) {
-        case t.REQUEST_GET_WRITINGS: return state;
         case t.FAILURE_GET_WRITINGS: return state;
         case t.SUCCESS_GET_WRITINGS: 
             return {
@@ -21,7 +20,6 @@ export default function writingsReducer(
                 list: action.payload,
             };
 
-        case t.REQUEST_CREATE_WRITING: return state;
         case t.FAILURE_CREATE_WRITING: return state;
         case t.SUCCESS_CREATE_WRITING: 
             return {

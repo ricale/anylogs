@@ -1,15 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
+    KeyboardAvoidingView as RNKeyboardAvoidingView,
     Platform,
     TouchableOpacity,
-    Keyboard
+    Keyboard,
 } from 'react-native';
-
-import styled from 'themes';
-
-const Container = styled.KeyboardAvoidingView`
-    flex: 1;
-`;
 
 type KeyboardAvoidingViewProps = {
     children: React.ReactNode
@@ -17,19 +12,20 @@ type KeyboardAvoidingViewProps = {
 const KeyboardAvoidingView = ({
     children,
 }: KeyboardAvoidingViewProps) => {
+    const behavior = Platform.OS === 'ios' ? 'padding' : 'height';
+    const style = useMemo(() => ({flex: 1}), []);
     return (
-        <Container
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <RNKeyboardAvoidingView
+            behavior={behavior}
+            style={style}>
             <TouchableOpacity
                 activeOpacity={1}
-                onPress={() => {
-                    Keyboard.dismiss();
-                }}>
+                onPress={Keyboard.dismiss}>
                 <>
                     {children}
                 </>
             </TouchableOpacity>
-        </Container>
+        </RNKeyboardAvoidingView>
     )
 }
 

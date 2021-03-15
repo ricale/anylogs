@@ -1,5 +1,1 @@
-import useMyNavigation from './useMyNavigation';
-
-export {
-    useMyNavigation,
-}
+export { default as useMyNavigation } from './useMyNavigation';

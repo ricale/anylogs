@@ -1,7 +1,2 @@
-import WritingsListScreen from './writings/list';
-import WritingsNewScreen from './writings/new';
-
-export {
-    WritingsListScreen,
-    WritingsNewScreen,
-}
+export { default as WritingsListScreen } from './writings/list';
+export { default as WritingsNewScreen } from './writings/new';

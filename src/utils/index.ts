@@ -1,11 +1,4 @@
-import capitalize from './capitalize';
-import convertUnderscoreToCamelCase from './convertUnderscoreToCamelCase';
-import isBlank from './isBlank';
-import LocalStorage from './LocalStorage';
-
-export {
-    capitalize,
-    convertUnderscoreToCamelCase,
-    isBlank,
-    LocalStorage,
-}
+export { default as capitalize } from './capitalize';
+export { default as convertUnderscoreToCamelCase } from './convertUnderscoreToCamelCase';
+export { default as isBlank } from './isBlank';
+export { default as LocalStorage } from './LocalStorage';

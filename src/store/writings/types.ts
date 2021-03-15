@@ -1,4 +1,4 @@
-import { BaseAction } from "../types"
+import { BaseAction } from '../types';
 
 export type Writing = {
     id: string

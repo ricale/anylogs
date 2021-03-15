@@ -1,5 +1,6 @@
-import * as writingsWatchers from './writings/saga';
 import { all } from 'redux-saga/effects';
+
+import * as writingsWatchers from './writings/saga';
 
 function watchAll(...args: any[]) {
     return all(

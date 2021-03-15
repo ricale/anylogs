@@ -7,12 +7,12 @@ type TextProps = {
 }
 
 const Text = styled.Text<TextProps>`
-  color: ${p =>
-    p.theme.colors[
-      `color${capitalize(p.color || 'onBackground')}`
-    ] || p.color
-  };
-  font-size: ${p => p.theme.text.body1.fontSize}px;
+    color: ${p =>
+        p.theme.colors[
+            `color${capitalize(p.color || 'onBackground')}` as keyof typeof p.theme.colors
+        ] || p.color
+    };
+    font-size: ${p => p.theme.text.body1.fontSize}px;
 `;
 
 export default Text;

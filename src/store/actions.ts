@@ -1,5 +1,1 @@
-import writingsActions from './writings/actions';
-
-export {
-    writingsActions,
-}
+export { default as writingsActions } from './writings/actions';
