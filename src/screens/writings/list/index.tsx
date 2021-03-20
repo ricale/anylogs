@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, ScreenContainer, Text } from 'components';
 import { RootState, writingsActions } from 'store';
-import { useMyNavigation } from 'router';
+import { useMyNavigation } from 'router-utils';
+import Database from 'database';
 
 const WritingsListScreen = () => {
     const { navigate } = useMyNavigation<'WritingsList'>();
@@ -15,7 +16,7 @@ const WritingsListScreen = () => {
         dispatch(writingsActions.requestGetWritings());
     }, []);
 
-    console.log('list', list);
+    // Database.insert('writing', {content: 'test'})
 
     return (
         <ScreenContainer>

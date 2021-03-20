@@ -40,8 +40,10 @@
     "baseUrl": "./",                          /* Base directory to resolve non-absolute module names. */
     "paths": {                                /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
       "components": ["src/components"],
+      "database": ["src/database"],
       "models": ["src/models"],
       "router": ["src/router"],
+      "router-utils": ["src/router-utils"],
       "screens": ["src/screens"],
       "store": ["src/store"],
       "themes": ["src/themes"],

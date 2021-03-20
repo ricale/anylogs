@@ -4,12 +4,10 @@ import factoryWatchAction from '../_utils/factoryWatchAction';
 import { actionTypes as t } from './actions';
 
 async function getWritings() {
-    console.log('saga getWritings')
     return await Model.getWritings();
 }
 
 async function createWriting(data: any) {
-    console.log('saga createWriting');
     return await Model.saveWriting(data);
 }
 

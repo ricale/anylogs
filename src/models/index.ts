@@ -52,8 +52,6 @@ namespace Model {
                 .filter(id => !!id)
                 .map(async (id) => await get(id))
         );
-        console.log('getWritings writingIds', writingIds)
-        console.log('getWritings result', result);
         return {
             data: result.filter(writing => !!writing),
             page,
@@ -69,8 +67,6 @@ namespace Model {
         const data = (typeof args[0] === 'string') ? args[1] : args[0];
 
         const writing = {id: id, ...data};
-
-        console.log('saveWriting writing', writing);
 
         await addWritingId(id);
         await save(writing);
