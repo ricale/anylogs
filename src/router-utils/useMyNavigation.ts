@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { RootStackParamList } from '../';
+import { RootStackParamList } from 'router';
 
 // useNavigation 과의 구별을 위한 네이밍
 function useMyNavigation<RouteName extends keyof RootStackParamList>() {

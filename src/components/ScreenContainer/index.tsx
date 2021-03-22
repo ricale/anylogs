@@ -59,8 +59,9 @@ const ScreenContainer = ({
                     }
                     right={headerRight}
                     float={headerFloat}>
-                    {!!title &&
-                        <Title>{title}</Title>
+                    {typeof title === 'string' ?
+                        <Title>{title}</Title> :
+                        (!!title && title)
                     }
                 </Header>
             }

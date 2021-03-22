@@ -20,11 +20,22 @@ export default function writingsReducer(
                 list: action.payload,
             };
 
-        case t.FAILURE_CREATE_WRITING: return state;
+        case t.FAILURE_CREATE_WRITING:
+            return {
+                ...state,
+                created: {
+                    success: false,
+                    message: action.payload.message,
+                    timestamp: action.meta.timestamp,
+                }
+            }
         case t.SUCCESS_CREATE_WRITING: 
             return {
                 ...state,
-                detail: action.payload,
+                created: {
+                    success: true,
+                    timestamp: action.meta.timestamp,
+                }
             };
         default:
             return state;

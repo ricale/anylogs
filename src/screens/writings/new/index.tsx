@@ -1,34 +1,53 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
     Button,
     Input,
     ScreenContainer,
 } from 'components';
-import { writingsActions } from 'store';
+import { RootState, writingsActions } from 'store';
 import styled, { tval } from 'themes';
+import { useMyNavigation } from 'router-utils';
 
 const Form = styled.View`
     margin: ${tval('margin')};
     padding: ${tval('margin')};
     background-color: ${tval('colorSurface')};
 `;
-const TextArea = styled(Input)`
+const TextArea = styled(Input).attrs({
+    multiline: true,
+    textAlignVertical: 'top',
+})`
     height: 200px;
     margin-bottom: ${tval('gutter')};
-    text-align-vertical: top;
 `;
 
-const WritingsNewScreen = () => {
-    const [content, setContent] = useState('');
-
+const WritingNewScreen = () => {
     const dispatch = useDispatch();
+    const navigation = useMyNavigation();
+    const [content, setContent] = useState('');
+    const { created } = useSelector((s: RootState) => s.writings);
+
+    const initTimestamp = useMemo(() => new Date().getTime(), []);
+    useEffect(() => {
+        if(!created || created.timestamp < initTimestamp) {
+            return;
+        }
+        if(created.success) {
+            // 성공 메시지
+            navigation.navigate('WritingList');
+        } else {
+            // 실패 메시지
+        }
+    }, [created, navigation]);
+
     const onPress = useCallback(() => {
         dispatch(writingsActions.requestCreateWriting({
-            content,
+            content: content,
         }));
     }, [dispatch, content]);
+
     return (
         <ScreenContainer
             contentAlignCenter
@@ -36,7 +55,6 @@ const WritingsNewScreen = () => {
 
             <Form>
                 <TextArea
-                    multiline
                     value={content}
                     onChangeText={setContent}
                     />
@@ -50,4 +68,4 @@ const WritingsNewScreen = () => {
     )
 }
 
-export default WritingsNewScreen;
+export default WritingNewScreen;

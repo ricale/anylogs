@@ -1,14 +1,14 @@
-import Model from 'models';
+import { Writing } from 'models';
 
 import factoryWatchAction from '../_utils/factoryWatchAction';
 import { actionTypes as t } from './actions';
 
 async function getWritings() {
-    return await Model.getWritings();
+    return await Writing.get();
 }
 
-async function createWriting(data: any) {
-    return await Model.saveWriting(data);
+async function createWriting(payload: any) {
+    return await Writing.create(payload);
 }
 
 export const watchGetWritings = factoryWatchAction(

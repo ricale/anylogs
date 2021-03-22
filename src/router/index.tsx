@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-    NavigationContainer
+    NavigationContainer,
+    ParamListBase
 } from '@react-navigation/native';
 import {
     CardStyleInterpolators,
@@ -9,9 +10,9 @@ import {
 
 import * as pages from 'screens';
 
-export type RootStackParamList = {
-    WritingsList: undefined
-    WritingsNew: undefined
+export interface RootStackParamList extends ParamListBase {
+    WritingList: undefined
+    WritingNew: undefined
 }
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -24,10 +25,10 @@ const AppRouter = () => {
                     cardStyle: { backgroundColor: 'transparent' },
                     cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
                 }}>
-                <Stack.Screen name='WritingsList' component={pages.WritingsListScreen} />
+                <Stack.Screen name='WritingList' component={pages.WritingListScreen} />
                 <Stack.Screen
-                    name='WritingsNew'
-                    component={pages.WritingsNewScreen}
+                    name='WritingNew'
+                    component={pages.WritingNewScreen}
                     options={{
                         cardStyleInterpolator: CardStyleInterpolators.forNoAnimation,
                     }}

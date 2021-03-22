@@ -1,2 +1,2 @@
-export { default as WritingsListScreen } from './writings/list';
-export { default as WritingsNewScreen } from './writings/new';
+export { default as WritingListScreen } from './writings/list';
+export { default as WritingNewScreen } from './writings/new';

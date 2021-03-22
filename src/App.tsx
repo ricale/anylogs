@@ -21,7 +21,7 @@ const App = () => {
     const [databaseLoaded, setDatabaseLoaded] = useState(false);
     useEffect(() => {
         Database.init().then(() => setDatabaseLoaded(true));
-    }, [])
+    }, []);
     return (databaseLoaded &&
         <ThemeProvider theme={normal}>
             <Provider store={store}>

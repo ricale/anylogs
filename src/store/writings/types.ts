@@ -3,6 +3,7 @@ import { BaseAction } from '../types';
 export type Writing = {
     id: string
     content: string
+    writtenAt: number
     createdAt: number
     updatedAt: number
 }
@@ -17,4 +18,9 @@ export type WritingsState = {
         totalSize: number
     }
     detail?: Writing
+    created?: {
+        success: boolean
+        message?: string
+        timestamp: number
+    }
 }

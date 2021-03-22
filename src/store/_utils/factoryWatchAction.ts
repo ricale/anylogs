@@ -13,7 +13,7 @@ export default function factoryWatchAction(
         const successActionType = actionType.replace('REQUEST_', 'SUCCESS_');
         // TODO:
         // 조건부 retry 가 가능한지 (403 일 때만 가능한지) 확인할 것
-        const data = yield retry(2, 1000, dataGetter, action.payload);
+        const data = yield dataGetter(action.payload);
         yield put({
           type: successActionType,
           requestParams: action.payload,

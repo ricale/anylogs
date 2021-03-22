@@ -1,39 +1,36 @@
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, ScreenContainer, Text } from 'components';
+import { Button, ScreenContainer } from 'components';
 import { RootState, writingsActions } from 'store';
 import { useMyNavigation } from 'router-utils';
-import Database from 'database';
 
-const WritingsListScreen = () => {
-    const { navigate } = useMyNavigation<'WritingsList'>();
+import WritingItem from './WritingItem';
+
+const WritingListScreen = () => {
+    const { navigate } = useMyNavigation<'WritingList'>();
     const dispatch = useDispatch();
     const list = useSelector((s: RootState) => s.writings.list);
 
     useEffect(() => {
         dispatch(writingsActions.requestGetWritings());
-    }, []);
-
-    // Database.insert('writing', {content: 'test'})
+    }, [dispatch]);
 
     return (
         <ScreenContainer>
-            <Text>WritingsListScreen</Text>
-
-            {list?.data?.map(writing =>
-                <View key={writing.id}>
-                    <Text>{writing.content}</Text>
-                </View>
-            )}
+            <FlatList
+                data={list?.data}
+                renderItem={WritingItem}
+                keyExtractor={item => `${item.id}`}
+                />
 
             <Button
                 text='생성'
-                onPress={() => navigate('WritingsNew')}
+                onPress={() => navigate('WritingNew')}
                 />
         </ScreenContainer>
     );
 }
 
-export default WritingsListScreen;
+export default WritingListScreen;
