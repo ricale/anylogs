@@ -19,6 +19,9 @@ const colors = {
 
     colorError: '#CF6679',
     colorOnError: '#000000',
+
+    colorSuccess: '#BB86FC',
+    colorOnSuccess: '#000000',
 };
 
 const dimens = {

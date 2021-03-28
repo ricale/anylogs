@@ -45,7 +45,7 @@ async function get({
 
     const limit = pageSize;
     const offset = (page || 0) * (pageSize || 0);
-    const result = await Database.select('writing', { limit, offset });
+    const result = await Database.select('writing', { limit, offset, orderBy: { field: 'id', desc: true } });
     return {
         pageSize,
         page,

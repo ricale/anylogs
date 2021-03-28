@@ -1,7 +1,9 @@
+export type StatusMessage = {
+    type: 'success' | 'failure'
+    content: string
+    timestamp: number
+}
+
 export type StatusState = {
-    message?: {
-        type: 'success' | 'failure'
-        content: string
-        timestamp: number
-    }
+    message?: StatusMessage
 }

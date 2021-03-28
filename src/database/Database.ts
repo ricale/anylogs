@@ -17,7 +17,6 @@ async function init () {
         return;
     }
 
-    console.log('Database.init');
     try {
         db = await SQLite.openDatabase({
             // name: `${DATABASE_NAME}.db`,
@@ -40,6 +39,7 @@ async function query (
     params?: any[] | undefined
 ) {
     try {
+        console.log('call', statement);
         const result = await db.executeSql(statement, params);
         console.log(`%cquery`, 'color: dodgerblue;', statement, result);
         return result;
@@ -76,27 +76,33 @@ async function find (tableName: string, id: number) {
         ` FROM ${tableName}`+
         ` WHERE id = ${id};`
     );
-    console.log('Database.find result', result);
     return convertAllKeys(result.rows.item(0));
 };
 
 type SelectProps = {
     limit?: number
     offset?: number
+    orderBy?: {
+        field: string
+        desc?: boolean
+    }
 }
 async function select (
     tableName: string,
     {
         limit,
-        offset
+        offset,
+        orderBy,
     }: SelectProps = {}
 ) {
     const limitClause = limit ? ` LIMIT ${limit}` : '';
-    const offsetClause = limit ? ` OFFSET ${offset}` : '';
+    const offsetClause = offset ? ` OFFSET ${offset}` : '';
+    const orderByClause = orderBy ? ` ORDER BY ${orderBy.field}${orderBy.desc?' DESC':' ASC'}` : '';
 
     const [ result ] = await query(
         `SELECT *`+
         ` FROM ${tableName}`+
+        orderByClause+
         limitClause+
         offsetClause
     );

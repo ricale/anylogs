@@ -14,7 +14,9 @@ const WritingListScreen = () => {
     const list = useSelector((s: RootState) => s.writings.list);
 
     useEffect(() => {
-        dispatch(writingsActions.requestGetWritings());
+        dispatch(writingsActions.requestGetWritings({
+            pageSize: 100
+        }));
     }, [dispatch]);
 
     return (

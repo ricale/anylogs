@@ -13,8 +13,9 @@ const SafeAreaViewContainer = styled.SafeAreaView`
 const App = () => {
     const [databaseLoaded, setDatabaseLoaded] = useState(false);
     useEffect(() => {
+        setDatabaseLoaded(false);
         Database.init().then(() => setDatabaseLoaded(true));
-    }, []);
+    }, [Database]);
     return (
         <ThemeProvider theme={normal}>
             {databaseLoaded &&
