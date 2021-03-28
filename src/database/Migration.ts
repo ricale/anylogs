@@ -10,11 +10,11 @@ class Migration {
         this.version = version;
         this.sqls = typeof sqls === 'string' ? [sqls] : sqls;
 
-        console.log('Migration', {version: this.version, sqls: this.sqls})
+        console.log('Migration', {version: this.version, sqls: this.sqls});
     }
 
     _executeSqls = async (txn: Transaction, result: ResultSet) => {
-        const promises = !result.rows.length ? this.sqls.map(s => txn.executeSql(s)) : []
+        const promises = !result.rows.length ? this.sqls.map(s => txn.executeSql(s)) : [];
         await Promise.all([
             ...promises,
             txn.executeSql('INSERT INTO executed_migration (migration) VALUES (:migration)', [this.version]),
@@ -40,12 +40,12 @@ class Migration {
                     (tx, result) => {
                         this._executeSqls(tx, result)
                             .then(success)
-                            .catch(failure)
+                            .catch(failure);
                     },
                     failure
                 );
             },
-        )
+        );
     }
 }
 

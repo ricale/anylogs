@@ -40,6 +40,7 @@ const WritingNewScreen = () => {
         } else {
             // 실패 메시지
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [created, navigation]);
 
     const onPress = useCallback(() => {
@@ -65,7 +66,7 @@ const WritingNewScreen = () => {
                     />
             </Form>
         </ScreenContainer>
-    )
-}
+    );
+};
 
 export default WritingNewScreen;

@@ -74,6 +74,6 @@ const ScreenContainerHeader = ({
             </RowComp>
         </Container>
     );
-}
+};
 
 export default ScreenContainerHeader;

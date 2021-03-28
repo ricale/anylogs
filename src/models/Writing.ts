@@ -64,6 +64,6 @@ const Writing = {
     remove,
     find,
     get,
-}
+};
 
 export default Writing;

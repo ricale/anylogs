@@ -15,7 +15,8 @@ const App = () => {
     useEffect(() => {
         setDatabaseLoaded(false);
         Database.init().then(() => setDatabaseLoaded(true));
-    }, [Database]);
+    }, []);
+
     return (
         <ThemeProvider theme={normal}>
             {databaseLoaded &&
@@ -24,7 +25,7 @@ const App = () => {
                 </SafeAreaViewContainer>
             }
         </ThemeProvider>
-    )
-}
+    );
+};
 
 export default App;

@@ -12,11 +12,11 @@ const PASSLIST: Passlist = {
     [writingActionTypes.SUCCESS_CREATE_WRITING]: {
         type: 'success',
         content: 'success create writing',
-    }
-}
+    },
+};
 
 const initialState: StatusState = {
-}
+};
 
 export default function statusReducer(
     state = initialState,

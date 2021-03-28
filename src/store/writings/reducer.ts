@@ -27,8 +27,8 @@ export default function writingsReducer(
                     success: false,
                     message: action.payload.message,
                     timestamp: action.meta.timestamp,
-                }
-            }
+                },
+            };
         case t.SUCCESS_CREATE_WRITING: 
             return {
                 ...state,
@@ -37,12 +37,12 @@ export default function writingsReducer(
                     data: [
                         ...state.list.data,
                         action.payload,
-                    ]
+                    ],
                 },
                 created: {
                     success: true,
                     timestamp: action.meta.timestamp,
-                }
+                },
             };
         default:
             return state;

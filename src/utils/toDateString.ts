@@ -8,7 +8,7 @@ type ToDateStringOptions = {
 const defaultOptions: ToDateStringOptions = {
     fullYear: true,
     hasTime: true,
-}
+};
 
 export default function toDateString(
     date: Date | string | number,

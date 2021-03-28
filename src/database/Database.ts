@@ -20,7 +20,7 @@ async function init () {
     try {
         db = await SQLite.openDatabase({
             // name: `${DATABASE_NAME}.db`,
-            name: `a`,
+            name: 'a',
             location: 'default',
             createFromLocation: `~www/${DATABASE_NAME}.db`,
         });
@@ -41,7 +41,7 @@ async function query (
     try {
         console.log('call', statement);
         const result = await db.executeSql(statement, params);
-        console.log(`%cquery`, 'color: dodgerblue;', statement, result);
+        console.log('%cquery', 'color: dodgerblue;', statement, result);
         return result;
     } catch(err) {
         console.error(statement, err);
@@ -63,7 +63,7 @@ async function insert (tableName: string, keyAndValue: Record<string, any>) {
         `INSERT INTO ${tableName} (${keys.join(',')})`+
         ` VALUES (${values.join(',')});`
     );
-    const { rowsAffected, insertId } = result;
+    const { insertId } = result;
     return {
         success: true,
         data: { id: insertId },
@@ -100,7 +100,7 @@ async function select (
     const orderByClause = orderBy ? ` ORDER BY ${orderBy.field}${orderBy.desc?' DESC':' ASC'}` : '';
 
     const [ result ] = await query(
-        `SELECT *`+
+        'SELECT *'+
         ` FROM ${tableName}`+
         orderByClause+
         limitClause+

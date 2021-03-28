@@ -1,8 +1,8 @@
-import { ThemeProps } from "styled-components"
+import { ThemeProps } from 'styled-components';
 
-import { isBlank } from "utils";
+import { isBlank } from 'utils';
 
-import normal, { NormalTheme } from "./normal";
+import normal, { NormalTheme } from './normal';
 
 function withUnit(v: any) {
     if(typeof v === typeof 0) {
@@ -47,5 +47,5 @@ export default function getValue<P extends Props>(v: GetValueParam<P>) {
             isColors(value) ? p.theme.colors[value] :
                               value
         );
-    }
+    };
 }

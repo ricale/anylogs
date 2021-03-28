@@ -12,7 +12,7 @@ const {
 } = styledComponents as ReactNativeThemedStyledComponentsModule<NormalTheme>;
 
 function useTheme() {
-    return useContext(ThemeContext)
+    return useContext(ThemeContext);
 }
 
 export {

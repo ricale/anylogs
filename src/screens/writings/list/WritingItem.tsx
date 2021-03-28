@@ -24,6 +24,6 @@ const WritingItem = ({
             <Text>{item.content}</Text>
         </Container>
     );
-}
+};
 
 export default WritingItem;

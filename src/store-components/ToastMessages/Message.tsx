@@ -34,7 +34,7 @@ const Message = ({
     hide,
     content,
     timestamp,
-    onEndHideAnimation
+    onEndHideAnimation,
 }: MessageProps) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -48,7 +48,7 @@ const Message = ({
                 onEndHideAnimation(timestamp);
             }
         });
-    }, [hide, fadeAnim]);
+    }, [hide, fadeAnim, onEndHideAnimation, timestamp]);
 
     return (
         <Animated.View
@@ -58,7 +58,7 @@ const Message = ({
                 {content}
             </Content>
         </Animated.View>
-    )
+    );
 };
 
 export default Message;

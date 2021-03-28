@@ -15,7 +15,7 @@ const WritingListScreen = () => {
 
     useEffect(() => {
         dispatch(writingsActions.requestGetWritings({
-            pageSize: 100
+            pageSize: 100,
         }));
     }, [dispatch]);
 
@@ -33,6 +33,6 @@ const WritingListScreen = () => {
                 />
         </ScreenContainer>
     );
-}
+};
 
 export default WritingListScreen;

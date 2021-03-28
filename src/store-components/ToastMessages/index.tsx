@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
-import styled, { css, tval } from 'themes';
+import styled, { tval } from 'themes';
 import { RootState, StatusState } from 'store';
 import { useSelector } from 'react-redux';
 
@@ -37,10 +36,10 @@ const ToastMessage = () => {
                 }
                 return {
                     ...msg,
-                    hide: true
+                    hide: true,
                 };
             }),
-        )
+        );
     }, []);
 
     const removeMessage = useCallback((timestamp: number) => {
@@ -48,7 +47,7 @@ const ToastMessage = () => {
             msgs.filter(msg =>
                 msg.timestamp !== timestamp
             )
-        )
+        );
     }, []);
 
     const initTimestamp = useMemo(() => new Date().getTime(), []);
@@ -62,6 +61,7 @@ const ToastMessage = () => {
         setTimeout(() => {
             hideMessageWithAnimation(newMessage.timestamp);
         }, MESSAGE_DURATION);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [newMessage]);
 
     useEffect(() => {
@@ -69,11 +69,12 @@ const ToastMessage = () => {
         if(shownMessages.length > MESSAGE_MAX_COUNT) {
             removeMessage(shownMessages[0].timestamp);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages]);
 
-    const onClick = useCallback((clickedMessage: ToastMessage) => {
-        hideMessageWithAnimation(clickedMessage.timestamp);
-    }, []);
+    // const onClick = useCallback((clickedMessage: ToastMessage) => {
+    //     hideMessageWithAnimation(clickedMessage.timestamp);
+    // }, []);
 
     if(!messages.length) {
         return null;
@@ -93,6 +94,6 @@ const ToastMessage = () => {
             )}
         </Container>
     );
-}
+};
 
 export default ToastMessage;

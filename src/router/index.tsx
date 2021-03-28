@@ -1,11 +1,11 @@
 import React from 'react';
 import {
     NavigationContainer,
-    ParamListBase
+    ParamListBase,
 } from '@react-navigation/native';
 import {
     CardStyleInterpolators,
-    createStackNavigator
+    createStackNavigator,
 } from '@react-navigation/stack';
 
 import * as pages from 'screens';
@@ -36,7 +36,7 @@ const AppRouter = () => {
 
             </Stack.Navigator>
         </NavigationContainer>
-    )
-}
+    );
+};
 
 export default AppRouter;

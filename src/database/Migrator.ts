@@ -5,9 +5,9 @@ import { ResultSet } from 'react-native-sqlite-storage';
 
 let _db: AnylogsDatabase;
 let _currentVersion: number | undefined;
-let _migrationsMap: Record<number, Migration>
-let _versions: number[]
-let _cursor: number
+let _migrationsMap: Record<number, Migration>;
+let _versions: number[];
+let _cursor: number;
 
 async function _initializeMigrationTables (txn: Transaction, result: ResultSet) {
     if(!result.rows.length) {
@@ -21,7 +21,7 @@ async function _initializeMigrationTables (txn: Transaction, result: ResultSet) 
         _currentVersion = 0;
 
     } else {
-        const [_, res] = await txn.executeSql('SELECT version FROM version LIMIT 1', []);
+        const [, res] = await txn.executeSql('SELECT version FROM version LIMIT 1', []);
         _currentVersion = res.rows.item(0).version;
     }
 }
@@ -49,7 +49,7 @@ function _initialize() {
                 }
             );
         });
-    })
+    });
 }
 
 async function init(db: AnylogsDatabase) {
@@ -110,7 +110,7 @@ async function migrate() {
         _cursor = verIndex === -1 ? _versions.length : verIndex;
     }
 
-    return new Promise<void>(_next)
+    return new Promise<void>(_next);
 }
 
 async function initAndMigrate (db: AnylogsDatabase) {
@@ -122,6 +122,6 @@ const Migrator = {
     init,
     migrate,
     initAndMigrate,
-}
+};
 
 export default Migrator;

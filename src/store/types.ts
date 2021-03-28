@@ -1,4 +1,4 @@
-import { Reducer, CombinedState } from "redux";
+import { Reducer, CombinedState } from 'redux';
 
 import { StatusState } from './status/types';
 import { WritingsState } from './writings/types';

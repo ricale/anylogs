@@ -26,7 +26,7 @@ const KeyboardAvoidingView = ({
                 </>
             </TouchableOpacity>
         </RNKeyboardAvoidingView>
-    )
-}
+    );
+};
 
 export default KeyboardAvoidingView;

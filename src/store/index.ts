@@ -29,7 +29,7 @@ export default function getStore(
                 ...middlewares
             )
         )
-    )
+    );
     
     sagaMiddleware.run(rootSaga);
 

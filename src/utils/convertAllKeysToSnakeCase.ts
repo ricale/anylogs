@@ -1,4 +1,4 @@
-import convertAllKeys from "./convertAllKeys";
+import convertAllKeys from './convertAllKeys';
 
 export default function convertAllKeysToSnakeCase<T>(value: T) {
     return convertAllKeys(value, {

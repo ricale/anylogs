@@ -83,7 +83,7 @@ const ScreenContainer = ({
                     />
             }
         </Container>
-    )
-}
+    );
+};
 
 export default ScreenContainer;

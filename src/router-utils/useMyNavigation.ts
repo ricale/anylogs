@@ -31,7 +31,7 @@ function useMyNavigation<RouteName extends keyof RootStackParamList>() {
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
-            })
+            });
         },
     }), [navigation]);
 }
