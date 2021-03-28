@@ -22,7 +22,7 @@ type ToastMessage = (StatusState['message'] & {
     hide?: boolean
 })
 
-const ToastMessage = () => {
+const ToastMessages = () => {
     const [messages, setMessages] = useState<ToastMessage[]>([]);
     const newMessage = useSelector((s: RootState) =>
         s.status.message
@@ -90,10 +90,11 @@ const ToastMessage = () => {
                     hide={msg.hide}
                     timestamp={msg.timestamp}
                     onEndHideAnimation={removeMessage}
+                    onPress={removeMessage}
                     />
             )}
         </Container>
     );
 };
 
-export default ToastMessage;
+export default ToastMessages;

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { Animated } from 'react-native';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { Animated, TouchableOpacity } from 'react-native';
 
 import styled, { tval } from 'themes';
 import { Text } from 'components';
@@ -28,6 +28,7 @@ type MessageProps = {
     content: string
     timestamp: number
     onEndHideAnimation: (timestamp: number) => void
+    onPress: (timestamp: number) => void
 }
 const Message = ({
     type,
@@ -35,6 +36,7 @@ const Message = ({
     content,
     timestamp,
     onEndHideAnimation,
+    onPress: _onPress,
 }: MessageProps) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -50,14 +52,20 @@ const Message = ({
         });
     }, [hide, fadeAnim, onEndHideAnimation, timestamp]);
 
+    const onPress = useCallback(() => {
+        _onPress(timestamp);
+    }, [_onPress, timestamp]);
+
     return (
-        <Animated.View
-            style={{ opacity: fadeAnim }}>
-            <Content
-                type={type}>
-                {content}
-            </Content>
-        </Animated.View>
+        <TouchableOpacity onPress={onPress}>
+            <Animated.View
+                style={{ opacity: fadeAnim }}>
+                <Content
+                    type={type}>
+                    {content}
+                </Content>
+            </Animated.View>
+        </TouchableOpacity>
     );
 };
 

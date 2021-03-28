@@ -35,8 +35,8 @@ export default function writingsReducer(
                 list: {
                     ...state.list,
                     data: [
-                        ...state.list.data,
                         action.payload,
+                        ...state.list.data,
                     ],
                 },
                 created: {
