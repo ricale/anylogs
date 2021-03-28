@@ -46,6 +46,7 @@
       "router-utils": ["src/router-utils"],
       "screens": ["src/screens"],
       "store": ["src/store"],
+      "store-components": ["src/store-components"],
       "themes": ["src/themes"],
       "utils": ["src/utils"]
     },

@@ -20,6 +20,7 @@ export default function factoryWatchAction(
           payload: data,
           meta: {
             timestamp: new Date().getTime(),
+            message: '',
           },
         });
         return;
@@ -32,7 +33,7 @@ export default function factoryWatchAction(
           payload: e,
           meta: {
             timestamp: new Date().getTime(),
-            message: errorActionType,
+            message: e.message || errorActionType,
           },
         });
       }

@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
-import { Provider } from 'react-redux';
 
-import AppRouter from 'router';
-import getStore from 'store';
-import styled, {
-    ThemeProvider,
-    normal,
-} from 'themes';
+import styled, { ThemeProvider, normal } from 'themes';
 import Database from 'database';
 
-const store = getStore();
+import AppBody from './AppBody';
 
 const SafeAreaViewContainer = styled.SafeAreaView`
     flex: 1;
@@ -22,14 +15,13 @@ const App = () => {
     useEffect(() => {
         Database.init().then(() => setDatabaseLoaded(true));
     }, []);
-    return (databaseLoaded &&
+    return (
         <ThemeProvider theme={normal}>
-            <Provider store={store}>
+            {databaseLoaded &&
                 <SafeAreaViewContainer>
-                    <View></View>
-                    <AppRouter />
+                    <AppBody />
                 </SafeAreaViewContainer>
-            </Provider>
+            }
         </ThemeProvider>
     )
 }

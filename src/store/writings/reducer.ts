@@ -32,6 +32,13 @@ export default function writingsReducer(
         case t.SUCCESS_CREATE_WRITING: 
             return {
                 ...state,
+                list: {
+                    ...state.list,
+                    data: [
+                        ...state.list.data,
+                        action.payload,
+                    ]
+                },
                 created: {
                     success: true,
                     timestamp: action.meta.timestamp,

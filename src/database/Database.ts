@@ -5,7 +5,7 @@ import Migrator from './Migrator';
 
 import { AnylogsDatabase } from './types';
 
-SQLite.DEBUG(true);
+// SQLite.DEBUG(true);
 SQLite.enablePromise(true);
 
 const DATABASE_NAME = 'anylog';
@@ -13,6 +13,11 @@ const DATABASE_NAME = 'anylog';
 let db: AnylogsDatabase;
 
 async function init () {
+    if(db) {
+        return;
+    }
+
+    console.log('Database.init');
     try {
         db = await SQLite.openDatabase({
             // name: `${DATABASE_NAME}.db`,
@@ -34,8 +39,14 @@ async function query (
     statement: string,
     params?: any[] | undefined
 ) {
-    console.log(`%cquery`, 'color: dodgerblue;', statement);
-    return await db.executeSql(statement, params);
+    try {
+        const result = await db.executeSql(statement, params);
+        console.log(`%cquery`, 'color: dodgerblue;', statement, result);
+        return result;
+    } catch(err) {
+        console.error(statement, err);
+        throw err;
+    }
 }
 
 async function insert (tableName: string, keyAndValue: Record<string, any>) {
@@ -48,11 +59,11 @@ async function insert (tableName: string, keyAndValue: Record<string, any>) {
             `"${converted[key]}"`
     );
 
-    const result = await query(
-        `INSERT INTO ${tableName} (${keys.join(',')})
-        VALUES (${values.join(',')});`
+    const [ result ] = await query(
+        `INSERT INTO ${tableName} (${keys.join(',')})`+
+        ` VALUES (${values.join(',')});`
     );
-    const { rowsAffected, insertId } = result[0];
+    const { rowsAffected, insertId } = result;
     return {
         success: true,
         data: { id: insertId },
@@ -60,11 +71,13 @@ async function insert (tableName: string, keyAndValue: Record<string, any>) {
 };
 
 async function find (tableName: string, id: number) {
-    return await query(
-        `SELECT *
-        FROM ${tableName}
-        WHERE id = ${id};`
+    const [ result ] = await query(
+        'SELECT *'+
+        ` FROM ${tableName}`+
+        ` WHERE id = ${id};`
     );
+    console.log('Database.find result', result);
+    return convertAllKeys(result.rows.item(0));
 };
 
 type SelectProps = {
@@ -81,13 +94,13 @@ async function select (
     const limitClause = limit ? ` LIMIT ${limit}` : '';
     const offsetClause = limit ? ` OFFSET ${offset}` : '';
 
-    const result = await query(
+    const [ result ] = await query(
         `SELECT *`+
         ` FROM ${tableName}`+
         limitClause+
         offsetClause
     );
-    const { rows } = result[0];
+    const { rows } = result;
     const items = [...new Array(rows.length)].map((_,i) =>
         rows.item(i)
     );

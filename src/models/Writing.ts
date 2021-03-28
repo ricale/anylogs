@@ -13,7 +13,11 @@ async function create(params: CreateParams) {
         createdAt,
         updatedAt: createdAt,
     });
-    return result;
+    if(!result.success) {
+        return null;
+    }
+    const created = await Database.find('writing', result.data.id);
+    return created;
 }
 
 function update() {

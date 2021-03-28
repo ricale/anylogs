@@ -16,6 +16,9 @@ const colors = {
 
     colorInputSurface: '#DDDDDD',
     colorOnInputSurface: '#121212',
+
+    colorError: '#CF6679',
+    colorOnError: '#000000',
 };
 
 const dimens = {
