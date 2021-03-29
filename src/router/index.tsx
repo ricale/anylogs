@@ -6,6 +6,7 @@ import {
 import {
     CardStyleInterpolators,
     createStackNavigator,
+    StackCardStyleInterpolator,
 } from '@react-navigation/stack';
 
 import * as pages from 'screens';
@@ -14,6 +15,12 @@ export interface RootStackParamList extends ParamListBase {
     WritingList: undefined
     WritingNew: undefined
 }
+
+const forFade: StackCardStyleInterpolator = ({current}) => ({
+    cardStyle: {
+        opacity: current.progress,
+    },
+});
 
 const Stack = createStackNavigator<RootStackParamList>();
 const AppRouter = () => {
@@ -30,7 +37,14 @@ const AppRouter = () => {
                     name='WritingNew'
                     component={pages.WritingNewScreen}
                     options={{
-                        cardStyleInterpolator: CardStyleInterpolators.forNoAnimation,
+                        cardStyleInterpolator: forFade,
+                    }}
+                    />
+                <Stack.Screen
+                    name='WritingDetail'
+                    component={pages.WritingDetailScreen}
+                    options={{
+                        cardStyleInterpolator: forFade,
                     }}
                     />
 
