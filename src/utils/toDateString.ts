@@ -11,9 +11,13 @@ const defaultOptions: ToDateStringOptions = {
 };
 
 export default function toDateString(
-    date: Date | string | number,
+    date: Date | string | number | null | undefined,
     options?: ToDateStringOptions,
 ) {
+    if(!date) {
+        return '';
+    }
+
     const o = { ...(options || {}) };
     Object.keys(defaultOptions).forEach(key => {
         const optionName = key as keyof ToDateStringOptions;

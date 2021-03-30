@@ -20,6 +20,13 @@ export default function writingsReducer(
                 list: action.payload,
             };
 
+        case t.FAILURE_GET_WRITING: return state;
+        case t.SUCCESS_GET_WRITING: 
+            return {
+                ...state,
+                detail: action.payload,
+            };
+
         case t.FAILURE_CREATE_WRITING:
             return {
                 ...state,

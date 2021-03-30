@@ -28,7 +28,11 @@ const WritingListScreen = () => {
 
     const onPressNew = useCallback(() => {
         navigate('WritingNew')
-    }, []);
+    }, [navigate]);
+
+    const onPressItem = useCallback((id: string) => {
+        navigate('WritingDetail', { id });
+    }, [navigate])
 
     return (
         <ScreenContainer>
@@ -37,7 +41,7 @@ const WritingListScreen = () => {
                 renderItem={({ item }) =>
                     <WritingItem
                         item={item}
-                        onPress={() => { navigate('WritingDetail'); }}
+                        onPress={() => onPressItem(item.id)}
                         />
                 }
                 keyExtractor={item => `${item.id}`}

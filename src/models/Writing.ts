@@ -28,8 +28,9 @@ function remove() {
 
 }
 
-function find() {
-
+async function find(id: number) {
+    const result = await Database.find('writing', id);
+    return result;
 }
 
 type GetParams = {
@@ -45,7 +46,12 @@ async function get({
 
     const limit = pageSize;
     const offset = (page || 0) * (pageSize || 0);
-    const result = await Database.select('writing', { limit, offset, orderBy: { field: 'id', desc: true } });
+    const result = await Database.select('writing', {
+        limit,
+        offset,
+        orderBy: { field: 'id', desc: true }
+    });
+
     return {
         pageSize,
         page,

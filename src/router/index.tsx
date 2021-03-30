@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-    NavigationContainer,
-    ParamListBase,
-} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import {
     CardStyleInterpolators,
     createStackNavigator,
@@ -11,9 +8,12 @@ import {
 
 import * as pages from 'screens';
 
-export interface RootStackParamList extends ParamListBase {
+export type RootStackParamList = {
     WritingList: undefined
     WritingNew: undefined
+    WritingDetail: {
+        id: string
+    }
 }
 
 const forFade: StackCardStyleInterpolator = ({current}) => ({
