@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, ScreenContainer } from 'components';
 import { RootState, writingsActions } from 'store';
 import { useMyNavigation } from 'router-utils';
+import styled, { tval } from 'themes';
 
 import WritingItem from './WritingItem';
+
+const Actions = styled.View`
+    position: absolute;
+    right: ${tval('margin')};
+    bottom: ${tval('margin')};
+`;
 
 const WritingListScreen = () => {
     const { navigate } = useMyNavigation<'WritingList'>();
@@ -19,18 +26,33 @@ const WritingListScreen = () => {
         }));
     }, [dispatch]);
 
+    const onPressNew = useCallback(() => {
+        navigate('WritingNew')
+    }, [navigate]);
+
+    const onPressItem = useCallback((id: string) => {
+        navigate('WritingDetail', { id });
+    }, [navigate])
+
     return (
         <ScreenContainer>
             <FlatList
                 data={list?.data}
-                renderItem={WritingItem}
+                renderItem={({ item }) =>
+                    <WritingItem
+                        item={item}
+                        onPress={() => onPressItem(item.id)}
+                        />
+                }
                 keyExtractor={item => `${item.id}`}
                 />
 
-            <Button
-                text='생성'
-                onPress={() => navigate('WritingNew')}
-                />
+            <Actions>
+                <Button
+                    text='생성'
+                    onPress={onPressNew}
+                    />
+            </Actions>
         </ScreenContainer>
     );
 };

@@ -3,6 +3,8 @@ import React from 'react';
 import styled, { css, tval } from 'themes';
 import { capitalize } from 'utils';
 
+import LoadingIndicatorOverlay from './LoadingIndicatorOverlay';
+
 import Text from './Text';
 
 type ContainerProps = {
@@ -67,6 +69,7 @@ type ButtonProps = {
     compact?: boolean
     marginBottom?: number | string
     disabled?: boolean
+    loading?: boolean
     onPress?: () => any
     children?: React.ReactNode
 }
@@ -80,6 +83,7 @@ const Button = ({
     transparent = false,
     color,
     disabled = false,
+    loading,
     children,
     ...props
 }: ButtonProps) => {
@@ -105,7 +109,7 @@ const Button = ({
     return (
       <Container
           transparent={transparent}
-          disabled={disabled}
+          disabled={disabled || loading}
           color={color}
           {...props}>
           {/* 
@@ -126,6 +130,10 @@ const Button = ({
               </Label>
           }
           {!!children && children}
+
+          {loading &&
+            <LoadingIndicatorOverlay />
+          }
       </Container>
     );
 };

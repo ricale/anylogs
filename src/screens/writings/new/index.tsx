@@ -23,27 +23,43 @@ const TextArea = styled(Input).attrs({
     margin-bottom: ${tval('gutter')};
 `;
 
+type WritingNewState = {
+    content: string
+    submitting: boolean
+}
+
 const WritingNewScreen = () => {
     const dispatch = useDispatch();
     const navigation = useMyNavigation();
-    const [content, setContent] = useState('');
     const { created } = useSelector((s: RootState) => s.writings);
+    const [{
+        content,
+        submitting,
+    }, setState] = useState<WritingNewState>({
+        content: '',
+        submitting: false,
+    });
 
     const initTimestamp = useMemo(() => new Date().getTime(), []);
     useEffect(() => {
         if(!created || created.timestamp < initTimestamp) {
             return;
         }
+
         if(created.success) {
-            // 성공 메시지
             navigation.navigate('WritingList');
         } else {
-            // 실패 메시지
+            setState(st => ({ ...st, submitting: false }));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [created, navigation]);
 
+    const onChangeContent = useCallback((text: string) => {
+        setState(st => ({ ...st, content: text }));
+    }, []);
+
     const onPress = useCallback(() => {
+        setState(st => ({ ...st, submitting: true }));
         dispatch(writingsActions.requestCreateWriting({
             content: content,
         }));
@@ -57,11 +73,12 @@ const WritingNewScreen = () => {
             <Form>
                 <TextArea
                     value={content}
-                    onChangeText={setContent}
+                    onChangeText={onChangeContent}
                     />
 
                 <Button
                     text='저장'
+                    loading={submitting}
                     onPress={onPress}
                     />
             </Form>

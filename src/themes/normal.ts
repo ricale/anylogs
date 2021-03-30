@@ -3,8 +3,8 @@ import { DefaultTheme } from 'styled-components/native';
 const base = 16;
 
 const colors = {
-    colorPrimary: 'gold',
-    colorOnPrimary: 'black',
+    colorPrimary: '#BB86FC',
+    colorOnPrimary: '#000000',
 
     colorBackground: '#333333',
     colorOnBackground: '#FFFFFF',

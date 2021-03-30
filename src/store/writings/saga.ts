@@ -8,6 +8,11 @@ export const watchGetWritings = factoryWatchAction(
     Writing.get
 );
 
+export const watchGetWriting = factoryWatchAction(
+    t.REQUEST_GET_WRITING,
+    Writing.find
+);
+
 export const watchCreateWriting = factoryWatchAction(
     t.REQUEST_CREATE_WRITING,
     Writing.create
