@@ -4,7 +4,7 @@ import styled, { css, tval } from 'themes';
 import { capitalize } from 'utils';
 
 import LoadingIndicatorOverlay from './LoadingIndicatorOverlay';
-
+import Icon from './Icon';
 import Text from './Text';
 
 type ContainerProps = {
@@ -59,9 +59,9 @@ type ButtonProps = {
     text?: string
     textColor?: string
     textStyle?: object
-    // icon?: string
-    // iconColor?: string
-    // iconSize?: number
+    icon?: string
+    iconColor?: string
+    iconSize?: number
     transparent?: boolean
     color?: string
     width?: number
@@ -77,9 +77,9 @@ const Button = ({
     text,
     textColor,
     textStyle = {},
-    // icon,
-    // iconColor,
-    // iconSize,
+    icon,
+    iconColor,
+    iconSize,
     transparent = false,
     color,
     disabled = false,
@@ -93,12 +93,12 @@ const Button = ({
                       undefined
     );
 
-    // const iconColorName = (
-    //   iconColor ? iconColor :
-    //   !colorName ? undefined :
-    //   transparent ? colorName :
-    //                 `on${colorName}`
-    // );
+    const iconColorName = (
+      iconColor ? iconColor :
+      !colorName ? undefined :
+      transparent ? colorName :
+                    `on${colorName}`
+    );
     const textColorName = (
         textColor ? textColor :
         !colorName ? undefined :
@@ -112,7 +112,6 @@ const Button = ({
           disabled={disabled || loading}
           color={color}
           {...props}>
-          {/* 
           {!!icon &&
             <Icon
               name={icon}
@@ -120,12 +119,11 @@ const Button = ({
               color={iconColorName}
               />
           }
-          */}
           {!children && text &&
               <Label
                   color={textColorName}
                   style={textStyle}>
-                  {/* {icon ? ' ' : ''} */}
+                  {icon ? ' ' : ''}
                   {text}
               </Label>
           }

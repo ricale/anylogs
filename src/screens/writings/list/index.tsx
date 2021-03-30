@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, ScreenContainer } from 'components';
+import { Button, ScreenContainer, Icon } from 'components';
 import { RootState, writingsActions } from 'store';
 import { useMyNavigation } from 'router-utils';
 import styled, { tval } from 'themes';
@@ -49,7 +49,7 @@ const WritingListScreen = () => {
 
             <Actions>
                 <Button
-                    text='생성'
+                    icon='add'
                     onPress={onPressNew}
                     />
             </Actions>
