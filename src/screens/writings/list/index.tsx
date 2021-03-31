@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Button, ScreenContainer, Icon } from 'components';
+import { Button, ScreenContainer } from 'components';
 import { RootState, writingsActions } from 'store';
 import { useMyNavigation } from 'router-utils';
 import styled, { tval } from 'themes';
@@ -27,12 +27,12 @@ const WritingListScreen = () => {
     }, [dispatch]);
 
     const onPressNew = useCallback(() => {
-        navigate('WritingNew')
+        navigate('WritingNew');
     }, [navigate]);
 
     const onPressItem = useCallback((id: string) => {
         navigate('WritingDetail', { id });
-    }, [navigate])
+    }, [navigate]);
 
     return (
         <ScreenContainer>

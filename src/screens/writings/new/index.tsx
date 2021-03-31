@@ -1,26 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { TextInput } from 'react-native';
 
 import {
     Button,
-    Input,
+    TextArea,
     ScreenContainer,
 } from 'components';
 import { RootState, writingsActions } from 'store';
-import styled, { tval } from 'themes';
 import { useMyNavigation } from 'router-utils';
+import styled from 'themes';
 
-const Form = styled.View`
-    margin: ${tval('margin')};
-    padding: ${tval('margin')};
-    background-color: ${tval('colorSurface')};
-`;
-const TextArea = styled(Input).attrs({
-    multiline: true,
-    textAlignVertical: 'top',
-})`
-    height: 200px;
-    margin-bottom: ${tval('gutter')};
+const ContentArea = styled(TextArea)`
+    flex: 1;
 `;
 
 type WritingNewState = {
@@ -39,6 +31,13 @@ const WritingNewScreen = () => {
         content: '',
         submitting: false,
     });
+
+    const textareaRef = useRef<TextInput>(null);
+    useEffect(() => {
+        if(textareaRef) {
+            setTimeout(() => textareaRef.current?.focus(), 0);
+        }
+    }, [textareaRef]);
 
     const initTimestamp = useMemo(() => new Date().getTime(), []);
     useEffect(() => {
@@ -70,18 +69,17 @@ const WritingNewScreen = () => {
             contentAlignCenter
             popup>
 
-            <Form>
-                <TextArea
-                    value={content}
-                    onChangeText={onChangeContent}
-                    />
+            <ContentArea
+                ref={textareaRef}
+                value={content}
+                onChangeText={onChangeContent}
+                />
 
-                <Button
-                    text='저장'
-                    loading={submitting}
-                    onPress={onPress}
-                    />
-            </Form>
+            <Button
+                text='저장'
+                loading={submitting}
+                onPress={onPress}
+                />
         </ScreenContainer>
     );
 };

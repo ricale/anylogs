@@ -1,8 +1,7 @@
 import React from 'react';
 
-import styled from 'themes';
+import styled, { tval } from 'themes';
 
-import Button from '../Button';
 import Text from '../Text';
 import KeyboardAvoidingView from '../KeyboardAvoidingView';
 
@@ -13,6 +12,7 @@ import Content from './Content';
 const Title = styled(Text)`
   font-size: ${p => p.theme.text.h4.fontSize}px;
   color: ${p => p.theme.colors.colorOnBackground};
+  padding: 0 ${tval('margin')};
 `;
 
 type ScreenContainerProps = {
@@ -40,25 +40,25 @@ const ScreenContainer = ({
 
     headerShown,
     title,
-    headerFloat,
+    headerFloat: _headerFloat,
     headerLeft,
     headerRight,
     contentAlignCenter,
     contentPaddingHorizontal,
     ...props
 }: ScreenContainerProps) => {
+    const transparent = popup;
+    const headerFloat = !!_headerFloat && !popup;
     return (
         <Container
             style={containerStyle}
-            transparent={popup}>
+            transparent={transparent}>
             {headerShown &&
                 <Header
-                    left={
-                        headerLeft !== undefined ? headerLeft :
-                            <Button>a</Button>
-                    }
+                    left={headerLeft}
                     right={headerRight}
-                    float={headerFloat}>
+                    float={headerFloat}
+                    transparent={!transparent}>
                     {typeof title === 'string' ?
                         <Title>{title}</Title> :
                         (!!title && title)
@@ -72,14 +72,16 @@ const ScreenContainer = ({
                         {...props}
                         alignCenter={contentAlignCenter}
                         paddingHorizontal={contentPaddingHorizontal}
+                        transparent={!transparent}
                         />
                 </KeyboardAvoidingView>
             }
             {!keyboardAvoiding &&
                 <Content
                     {...props}
-                        alignCenter={contentAlignCenter}
-                        paddingHorizontal={contentPaddingHorizontal}
+                    alignCenter={contentAlignCenter}
+                    paddingHorizontal={contentPaddingHorizontal}
+                    transparent={!transparent}
                     />
             }
         </Container>

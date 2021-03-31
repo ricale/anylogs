@@ -1,4 +1,5 @@
 import React from 'react';
+import { Animated } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {
     CardStyleInterpolators,
@@ -16,11 +17,25 @@ export type RootStackParamList = {
     }
 }
 
-const forFade: StackCardStyleInterpolator = ({current}) => ({
-    cardStyle: {
-        opacity: current.progress,
-    },
-});
+const forSlide: StackCardStyleInterpolator = ({current, inverted, layouts: {screen}}) => {
+    return {
+        cardStyle: {
+            opacity: current.progress,
+            transform: [
+                {
+                    translateY: Animated.multiply(
+                        current.progress.interpolate({
+                            inputRange: [0, 1, 2],
+                            outputRange: [screen.height, 0, screen.height * -1],
+                            extrapolate: 'clamp',
+                        }),
+                        inverted
+                    ),
+                },
+            ],
+        },
+    };
+};
 
 const Stack = createStackNavigator<RootStackParamList>();
 const AppRouter = () => {
@@ -37,14 +52,14 @@ const AppRouter = () => {
                     name='WritingNew'
                     component={pages.WritingNewScreen}
                     options={{
-                        cardStyleInterpolator: forFade,
+                        cardStyleInterpolator: forSlide,
                     }}
                     />
                 <Stack.Screen
                     name='WritingDetail'
                     component={pages.WritingDetailScreen}
                     options={{
-                        cardStyleInterpolator: forFade,
+                        cardStyleInterpolator: forSlide,
                     }}
                     />
 

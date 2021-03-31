@@ -23,7 +23,7 @@ const Content = styled(Text)<ContentProps>`
 
 
 type MessageProps = {
-    type: 'error' | 'success'
+    type: 'danger' | 'success'
     hide?: boolean
     content: string
     timestamp: number

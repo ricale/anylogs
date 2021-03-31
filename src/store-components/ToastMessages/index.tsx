@@ -85,7 +85,7 @@ const ToastMessages = () => {
             {messages.map(msg =>
                 <Message
                     key={msg.timestamp}
-                    type={msg.type === 'failure' ? 'error' : msg.type}
+                    type={msg.type === 'failure' ? 'danger' : msg.type}
                     content={msg.content}
                     hide={msg.hide}
                     timestamp={msg.timestamp}

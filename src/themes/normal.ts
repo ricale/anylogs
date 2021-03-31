@@ -14,13 +14,13 @@ const colors = {
 
     colorDisabled: '#AAA',
 
-    colorInputSurface: '#DDDDDD',
-    colorOnInputSurface: '#121212',
+    colorInputSurface: '#333333',
+    colorOnInputSurface: '#FFFFFF',
 
-    colorError: '#CF6679',
-    colorOnError: '#000000',
+    colorDanger: '#CF6679',
+    colorOnDanger: '#000000',
 
-    colorSuccess: '#BB86FC',
+    colorSuccess: '#03dac6',
     colorOnSuccess: '#000000',
 };
 

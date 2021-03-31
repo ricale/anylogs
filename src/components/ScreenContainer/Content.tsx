@@ -12,9 +12,9 @@ type ContainerProps = {
     alignCenter?: boolean
     paddingHorizont?: number | string // 이름을 `paddingHorizontal`로 하면 에러 발생
     alwaysBounceVertical?: boolean
+    transparent?: boolean
 }
 const Container = styled.View<ContainerProps>`
-    background-color: transparent;
     ${p => p.full && css`
         flex: 1;
     `}
@@ -27,6 +27,10 @@ const Container = styled.View<ContainerProps>`
         padding-left: ${tval(p.paddingHorizont)};
         padding-right: ${tval(p.paddingHorizont)};
     `}
+
+    ${p => !p.transparent && css`
+        background-color: ${tval('colorBackground')};
+    `}
 `;
 
 type ScreenContainerContentProps = {
@@ -35,11 +39,13 @@ type ScreenContainerContentProps = {
     refreshControl?: React.ReactNode
     alignCenter?: boolean
     paddingHorizontal?: number | string
+    transparent?: boolean
 }
 const ScreenContainerContent = ({
     scroll,
     children,
     paddingHorizontal,
+    transparent = true,
     ...props
 }: ScreenContainerContentProps) => {
     const Comp = scroll ? ScrollView : View;
@@ -50,7 +56,7 @@ const ScreenContainerContent = ({
             full={!scroll}
             alwaysBounceVertical={false}
             paddingHorizont={paddingHorizontal}
-
+            transparent={transparent}
             {...props}>
             <StatusBar
                 translucent={false}
